@@ -1,0 +1,8 @@
+/.idea/
+/proyecto/build/
+*.class
+/bin/
+/.metadata/
+/tmp/
+/.project/
+/.gradle/
