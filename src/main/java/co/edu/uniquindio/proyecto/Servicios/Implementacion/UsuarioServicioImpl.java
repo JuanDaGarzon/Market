@@ -95,6 +95,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         usuario.setCorreo(usuarioDTO.getEmail());
         usuario.setPassword(usuarioDTO.getPassword());
         usuario.setTelefono(usuarioDTO.getTelefono());
+        usuario.setDireccion(usuarioDTO.getDireccion());
 
         return usuario;
     }
