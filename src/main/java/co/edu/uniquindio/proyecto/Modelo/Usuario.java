@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class Usuario extends Persona implements Serializable {
@@ -23,15 +23,18 @@ public class Usuario extends Persona implements Serializable {
     @Enumerated(EnumType.STRING)
     private Ciudad ciudad;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "usuario")
     private List<Comentario>listaComentarios;
 
-    @ManyToMany(mappedBy = "usuarios")
+    @ManyToMany(mappedBy = "usuariosFavoritos")
     private List<Producto> productosFavoritos;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "usuario")
     private List<Producto>listaProductos;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "usuario")
     private List<Compra>compras;
 

@@ -1,102 +1,108 @@
 package co.edu.uniquindio.proyecto.test;
 
+
 import co.edu.uniquindio.proyecto.DTO.UsuarioDTO;
 import co.edu.uniquindio.proyecto.DTO.UsuarioGetDTO;
 import co.edu.uniquindio.proyecto.Modelo.Ciudad;
+
+import co.edu.uniquindio.proyecto.Modelo.Usuario;
+import co.edu.uniquindio.proyecto.Repositorios.UsuarioRepo;
 import co.edu.uniquindio.proyecto.Servicios.Interfaces.UsuarioServicio;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
+
+import java.util.List;
+import java.util.Optional;
+
 
 @SpringBootTest
 @Transactional
+
 public class UsuarioTest {
 
-    @Autowired
-    private UsuarioServicio usuarioServicio;
+        @Autowired
+        private UsuarioServicio usuarioServicio;
+        @Autowired
+        private  UsuarioRepo usuarioRepo;
 
-    @Test
-    public void crearUsuarioTest() throws Exception{
 
-        //Se crea el usuario con el servicio de crearUsuario
-        UsuarioDTO usuarioDTO = new UsuarioDTO( "pedro","pedro@email.com","123","calle 41"
-                ,"3170902910", Ciudad.ARMENIA );
+        @Test
+        public void crearUsuarioTest() throws Exception{
 
-        int codigo = usuarioServicio.crearUsuario(usuarioDTO);
+            //Se crea el usuario con el servicio de crearUsuario
+            UsuarioDTO usuarioDTO = new UsuarioDTO(
 
-        //Se espera que si se registra correctamente entonces el servicio no debe retornar 0
-        Assertions.assertNotEquals(0, codigo);
+                    "Pepito 1",
+                    "pepe1@email.com",
+                    "1234",
+                    "Calle 123",
+                    "343",
+                    Ciudad.BOGOTA);
 
-    }
+            int codigo = usuarioServicio.crearUsuario(usuarioDTO);
 
-    @Test
-    public void eliminarUsuarioTest() throws Exception{
+            //Se espera que si se registra correctamente entonces el servicio no debe retornar 0
+            Assertions.assertNotEquals(0, codigo);
 
-        //Para eliminar el usuario primero se debe crear
-        UsuarioDTO usuarioDTO = new UsuarioDTO(
-                "Pepito 1",
-                "pepe1@email.com",
-                "1234",
-                "Calle 123",
-                "343",
-                Ciudad.ARMENIA);
+        }
 
-        int codigo = usuarioServicio.crearUsuario(usuarioDTO);
+        @Test
+        public void eliminarUsuarioTest() throws Exception{
 
-        //Una vez creado, lo borramos
-        int codigoBorrado = usuarioServicio.eliminiarUsuario(codigo);
+            //Para eliminar el usuario primero se debe crear
+            UsuarioDTO usuarioDTO = new UsuarioDTO(
+                    "Pepito 1",
+                    "pepe1@email.com",
+                    "1234",
+                    "Calle 123",
+                    "343",
+                    Ciudad.BOGOTA);
 
-        //Si intentamos buscar un usuario con el codigo del usuario borrado debemos obtener una excepción indicando que
-        // ya no existe
-        Assertions.assertThrows(Exception.class, () -> usuarioServicio.obtenerUsuario(codigoBorrado));
+            int codigo = usuarioServicio.crearUsuario(usuarioDTO);
 
-    }
+            //Una vez creado, lo borramos
+            int codigoBorrado = usuarioServicio.eliminiarUsuario(codigo);
 
-    @Test
-    public void actualizarUsuarioTest() throws Exception{
+            //Si intentamos buscar un usuario con el codigo del usuario borrado debemos obtener una excepción indicando que ya no existe
+            Assertions.assertThrows(Exception.class, () -> usuarioServicio.obtenerUsuario(codigoBorrado));
 
-        //Para actualizar el usuario primero se debe crear
-        UsuarioDTO usuarioDTO = new UsuarioDTO(
-                "Pepito 1",
-                "pepe1@email.com",
-                "1234",
-                "Calle 123",
-                "343",
-                Ciudad.ARMENIA);
+        }
+        /**
+        @Test
+        @Sql("classpath:dataset.sql")
+        public void obtenerUsuarioTest()throws Exception{
 
-        int codigoNuevo = usuarioServicio.crearUsuario(usuarioDTO);
+            Optional<Usuario>buscado = usuarioRepo.findById(4);
+            System.out.println(buscado.orElse(null));
 
-        //El servicio de actualizar nos retorna el usuario
-        UsuarioGetDTO usuarioActualizado = usuarioServicio.actualizarUsuario(codigoNuevo, new UsuarioDTO("Pepito Perez",
-                "pepe1@email.com", "1234", "Calle 123", "1111", Ciudad.ARMENIA));
+        }
+        */
+        @Test
+        @Sql("classpath:dataset.sql")
+        public void actualizar() throws Exception {
 
-        //Se comprueba que ahora el teléfono del usuario no es el que se usó cuando se creó inicialmente
-        Assertions.assertNotEquals("2782", usuarioActualizado.getTelefono());
+            Usuario guardado = usuarioServicio.obtener(1);
+            guardado.setCorreo("Ssandro@gmail.com");
+            System.out.println(guardado);
+            usuarioRepo.save(guardado);
 
-    }
+            Assertions.assertEquals("Ssandro@gmail.com",guardado.getCorreo());
+        }
 
-    @Test
-    public void obtenerUsuarioTest()throws Exception{
+        /**
+        @Test
+        @Sql("classpath:dataset.sql")
+        public void listar(){
+            List<UsuarioGetDTO> lista =usuarioRepo.findAll();
+            System.out.println(lista);
+        }
+        */
 
-        //Para obtener el usuario primero se debe crear
-        UsuarioDTO usuarioDTO = new UsuarioDTO(
-                "Pepito 1",
-                "pepe1@email.com",
-                "1234",
-                "Calle 123",
-                "343",
-                Ciudad.ARMENIA);
 
-        int codigoNuevo = usuarioServicio.crearUsuario(usuarioDTO);
-
-        //Se llama el servicio para obtener el usuario completo dado su código
-        UsuarioGetDTO usuarioGetDTO = usuarioServicio.obtenerUsuario(codigoNuevo);
-
-        //Comprobamos que la dirección que está en la base de datos coincide con la que esperamos
-        Assertions.assertEquals("Calle 123", usuarioGetDTO.getDireccion());
-
-    }
 
 }

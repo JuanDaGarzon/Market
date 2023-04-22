@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -25,12 +25,13 @@ public class Compra implements Serializable {
     private LocalDateTime fechaCeacion;
 
     @Column(nullable = false)
-    private double valorTotal;
+    private Double valorTotal;
 
     @Enumerated(EnumType.STRING)
     private MetodoPago metodoPago;
 
     @OneToMany(mappedBy = "compra")
+    @ToString.Exclude
     private  List<Carrito>carritos;
 
     @ManyToOne

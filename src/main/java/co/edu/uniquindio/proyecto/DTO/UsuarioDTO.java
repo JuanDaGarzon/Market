@@ -8,8 +8,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
+import java.util.List;
+
 /**
- * Esta clase nos permite obtener los datos del usurio de la interfaz
+ * Esta clase nos permite obtener los datos de usurio en la interfaz
  * de manera que se validen cada uno de sus campos
  */
 
@@ -25,7 +27,7 @@ public class UsuarioDTO {
     @NotNull
     @NotBlank
     @Length(max = 100, message = "El correo debe tener máximo 100 caracteres")
-    private String email;
+    private String correo;
 
     @NotNull
     @NotBlank
@@ -43,5 +45,5 @@ public class UsuarioDTO {
     private String telefono;
 
     @NotNull
-    private Ciudad ciudad;
+    private List<Ciudad> ciudad;
 }

@@ -2,7 +2,7 @@ package co.edu.uniquindio.proyecto.Modelo;
 
 public enum Categoria {
     VEHICULO,
-    PRODUCTO,
+    ELECTRODOMESTICO,
     INMUEBLE,
     SERVICIO
 

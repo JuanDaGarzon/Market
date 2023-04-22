@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * Esta clase nos permite obtener los datos que necesitamos al realizar
  * los metodos en la implementación
@@ -21,12 +23,12 @@ public class UsuarioGetDTO {
 
     private String nombre;
 
-    private String email;
+    private String correo;
 
     private String direccion;
 
     private String telefono;
 
-    private Ciudad ciudad;
+    private List<Ciudad> ciudad;
 
 }

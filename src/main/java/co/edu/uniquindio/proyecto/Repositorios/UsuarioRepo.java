@@ -1,4 +1,4 @@
-package co.edu.uniquindio.proyecto.Repocitorios;
+package co.edu.uniquindio.proyecto.Repositorios;
 
 import co.edu.uniquindio.proyecto.Modelo.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UsuarioRepo extends JpaRepository<Usuario,Integer> {
+
     @Query("select u from Usuario u where u.correo = :correo")
     Usuario buscarUsuario(String correo);
 

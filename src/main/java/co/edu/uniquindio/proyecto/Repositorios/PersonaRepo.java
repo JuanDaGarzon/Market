@@ -1,4 +1,4 @@
-package co.edu.uniquindio.proyecto.Repocitorios;
+package co.edu.uniquindio.proyecto.Repositorios;
 
 import co.edu.uniquindio.proyecto.Modelo.Persona;
 import org.springframework.data.jpa.repository.JpaRepository;

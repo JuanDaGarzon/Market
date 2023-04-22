@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyecto.Modelo;
 
 public enum Estado {
     ACEPTADO,
-    DENEGADO
+    DENEGADO,
+    SIN_REVISAR
 
 }

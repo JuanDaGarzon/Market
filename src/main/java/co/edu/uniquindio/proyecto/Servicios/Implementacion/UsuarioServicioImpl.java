@@ -3,11 +3,14 @@ package co.edu.uniquindio.proyecto.Servicios.Implementacion;
 import co.edu.uniquindio.proyecto.DTO.UsuarioDTO;
 import co.edu.uniquindio.proyecto.DTO.UsuarioGetDTO;
 import co.edu.uniquindio.proyecto.Modelo.Usuario;
-import co.edu.uniquindio.proyecto.Repocitorios.UsuarioRepo;
+import co.edu.uniquindio.proyecto.Repositorios.UsuarioRepo;
+import co.edu.uniquindio.proyecto.Servicios.Excepciones.AtributoException;
+import co.edu.uniquindio.proyecto.Servicios.Excepciones.UsuarioNoEncontradoException;
 import co.edu.uniquindio.proyecto.Servicios.Interfaces.UsuarioServicio;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -22,10 +25,11 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     @Override
     public int crearUsuario(UsuarioDTO usuarioDTO) throws Exception {
 
-        Usuario buscado = usuarioRepo.buscarUsuario(usuarioDTO.getEmail());
+        Usuario buscado = usuarioRepo.buscarUsuario(usuarioDTO.getCorreo());
+
 
         if (buscado!=null){
-            throw new Exception ("El correo"+usuarioDTO.getEmail()+"ya esta en usu");
+            throw new AtributoException("El correo"+usuarioDTO.getCorreo()+"ya esta en uso");
         }
 
         Usuario usuario = convertir(usuarioDTO);
@@ -70,7 +74,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         Optional<Usuario> usuario = usuarioRepo.findById(codigoUsuario);
 
         if (usuario.isEmpty()){
-            throw new Exception("El codigo "+codigoUsuario+" no esta asociado a ningún usuario");
+            throw new AtributoException("El codigo "+codigoUsuario+" no esta asociado a ningún usuario");
         }
 
         return usuario.get();
@@ -82,7 +86,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         boolean existe = usuarioRepo.existsById(codigoUsuario);
 
         if (!existe){
-            throw new Exception("El codigo "+codigoUsuario+" no esta asociado a ningún usuario");
+            throw new UsuarioNoEncontradoException("El codigo "+codigoUsuario+" no esta asociado a ningún usuario");
         }
 
     }
@@ -92,7 +96,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         Usuario usuario = new Usuario();
         usuario.setNombre(usuarioDTO.getNombre());
         usuario.setCiudad(usuarioDTO.getCiudad());
-        usuario.setCorreo(usuarioDTO.getEmail());
+        usuario.setCorreo(usuarioDTO.getCorreo());
         usuario.setPassword(usuarioDTO.getPassword());
         usuario.setTelefono(usuarioDTO.getTelefono());
         usuario.setDireccion(usuarioDTO.getDireccion());
@@ -115,11 +119,12 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
     }
 
-    private void validar (int codigoUsuario)throws Exception{
-        boolean existe = usuarioRepo.existsById(codigoUsuario);
-        if (!existe){
-            throw new Exception("El codigo:"+codigoUsuario+"no está asociado a ningún usuario");
-        }
+    @Override
+    public List<Usuario> listarUsuarios() {
+
+        return usuarioRepo.findAll();
+
     }
+
 
 }

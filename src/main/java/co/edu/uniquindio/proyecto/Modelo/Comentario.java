@@ -29,4 +29,5 @@ public class Comentario implements Serializable {
 
     @ManyToOne
     private  Usuario usuario;
+
 }

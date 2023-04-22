@@ -1,6 +1,5 @@
-package co.edu.uniquindio.proyecto.Repocitorios;
+package co.edu.uniquindio.proyecto.Repositorios;
 
-import ch.qos.logback.core.model.INamedModel;
 import co.edu.uniquindio.proyecto.Modelo.Comentario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

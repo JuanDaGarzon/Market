@@ -19,7 +19,7 @@ import java.util.Map;
 @Entity
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -36,38 +36,52 @@ public class Producto implements Serializable {
 
     @Column(nullable = false)
     @EqualsAndHashCode.Include
-    private double precio;
+    private Double precio;
 
     @Column(nullable = false)
     @PositiveOrZero
     private int unidades;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(nullable = false)
     private String descripcion;
 
     @Column(nullable = false)
     private LocalDateTime fechaCreacion;
 
     @Column(nullable = false)
-    private LocalDateTime fechalimite;
+    private LocalDateTime fechaLimite;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Estado estado;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
+
+    @ElementCollection
+    private Map<String,String>imagenes;
+
+    @ToString.Exclude
     @OneToMany(mappedBy = "producto")
     private List<ProductoAdministrador>listaAdministradores;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "producto")
     private List<Comentario>comentarios;
 
     @ManyToMany
-    @TableGenerator(name = "favorito")
-    private List<Usuario>usuarios;
+    @JoinTable(name = "favorito",
+            joinColumns = @JoinColumn(name = "producto"),
+            inverseJoinColumns = @JoinColumn(name = "usuario"))
+    private List<Usuario>usuariosFavoritos;
 
     @ManyToOne
     private Usuario usuario;
 
     @OneToMany(mappedBy = "producto")
+    @ToString.Exclude
     private List<Carrito>Carritos;
+
 }

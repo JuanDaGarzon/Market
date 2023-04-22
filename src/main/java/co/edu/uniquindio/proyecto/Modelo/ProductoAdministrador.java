@@ -22,14 +22,17 @@ public class ProductoAdministrador implements Serializable {
     @Column(length = 10)
     private Integer codigo;
 
-    @Column(length = 10, nullable = false)
+    @Column(length = 400, nullable = false)
     private String motivo;
 
+    @Column(length = 400, nullable = false)
     private String mensaje;
 
+    @Column(nullable = false)
     private LocalDateTime fecha;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Estado estado;
 
     @ManyToOne

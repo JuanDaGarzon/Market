@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="co.edu.uniquindio.proyecto.test.UsuarioTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-04-13T19:18:45" hostname="JUAN_GARZON" time="0.371">
+<testsuite name="co.edu.uniquindio.proyecto.test.UsuarioTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-04-22T04:04:50" hostname="JUAN_GARZON" time="0.634">
   <properties/>
-  <testcase name="crearUsuarioTest()" classname="co.edu.uniquindio.proyecto.test.UsuarioTest" time="0.279"/>
-  <testcase name="obtenerUsuarioTest()" classname="co.edu.uniquindio.proyecto.test.UsuarioTest" time="0.019"/>
-  <testcase name="actualizarUsuarioTest()" classname="co.edu.uniquindio.proyecto.test.UsuarioTest" time="0.049"/>
-  <testcase name="eliminarUsuarioTest()" classname="co.edu.uniquindio.proyecto.test.UsuarioTest" time="0.021"/>
-  <system-out><![CDATA[14:18:41.108 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [UsuarioTest]: using SpringBootContextLoader
-14:18:41.113 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [co.edu.uniquindio.proyecto.test.UsuarioTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-14:18:41.113 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [co.edu.uniquindio.proyecto.test.UsuarioTest]: UsuarioTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-14:18:41.145 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using ContextCustomizers for test class [UsuarioTest]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
-14:18:41.223 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\Users\juand\IdeaProjects\Market-main\build\classes\java\main\co\edu\uniquindio\proyecto\ProyectoApplication.class]
-14:18:41.226 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration co.edu.uniquindio.proyecto.ProyectoApplication for test class co.edu.uniquindio.proyecto.test.UsuarioTest
-14:18:41.354 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners for test class [UsuarioTest]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
-14:18:41.356 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: class [UsuarioTest], class annotated with @DirtiesContext [false] with mode [null]
+  <testcase name="crearUsuarioTest()" classname="co.edu.uniquindio.proyecto.test.UsuarioTest" time="0.481"/>
+  <testcase name="actualizar()" classname="co.edu.uniquindio.proyecto.test.UsuarioTest" time="0.089"/>
+  <testcase name="eliminarUsuarioTest()" classname="co.edu.uniquindio.proyecto.test.UsuarioTest" time="0.059"/>
+  <system-out><![CDATA[23:04:42.368 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [UsuarioTest]: using SpringBootContextLoader
+23:04:42.375 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [co.edu.uniquindio.proyecto.test.UsuarioTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+23:04:42.376 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [co.edu.uniquindio.proyecto.test.UsuarioTest]: UsuarioTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:04:42.432 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using ContextCustomizers for test class [UsuarioTest]: [DisableObservabilityContextCustomizer, PropertyMappingContextCustomizer, Customizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer, TestRestTemplateContextCustomizer]
+23:04:42.555 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\Users\juand\IdeaProjects\Market-main\build\classes\java\main\co\edu\uniquindio\proyecto\ProyectoApplication.class]
+23:04:42.557 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration co.edu.uniquindio.proyecto.ProyectoApplication for test class co.edu.uniquindio.proyecto.test.UsuarioTest
+23:04:42.741 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners for test class [UsuarioTest]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+23:04:42.742 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: class [UsuarioTest], class annotated with @DirtiesContext [false] with mode [null]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -22,29 +21,25 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.0.1)
 
-2023-04-13T14:18:41.662-05:00  INFO 23244 --- [    Test worker] c.e.u.proyecto.test.UsuarioTest          : Starting UsuarioTest using Java 17.0.6 with PID 23244 (started by juand in C:\Users\juand\IdeaProjects\Market-main)
-2023-04-13T14:18:41.663-05:00  INFO 23244 --- [    Test worker] c.e.u.proyecto.test.UsuarioTest          : No active profile set, falling back to 1 default profile: "default"
-2023-04-13T14:18:42.300-05:00  INFO 23244 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-04-13T14:18:42.369-05:00  INFO 23244 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 60 ms. Found 8 JPA repository interfaces.
-2023-04-13T14:18:42.862-05:00  INFO 23244 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-04-13T14:18:42.932-05:00  INFO 23244 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.6.Final
-2023-04-13T14:18:43.106-05:00  WARN 23244 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
-2023-04-13T14:18:43.245-05:00  INFO 23244 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-04-13T14:18:43.526-05:00  INFO 23244 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4beae1e3
-2023-04-13T14:18:43.528-05:00  INFO 23244 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-04-13T14:18:43.604-05:00  INFO 23244 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
-2023-04-13T14:18:43.703-05:00  WARN 23244 --- [    Test worker] org.hibernate.cfg.AnnotationBinder       : HHH000503: A class should not be annotated with both @Inheritance and @MappedSuperclass. @Inheritance will be ignored for: co.edu.uniquindio.proyecto.Modelo.Persona.
-2023-04-13T14:18:44.666-05:00  INFO 23244 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-04-13T14:18:44.675-05:00  INFO 23244 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-04-13T14:18:45.410-05:00  WARN 23244 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-04-13T14:18:45.896-05:00  INFO 23244 --- [    Test worker] c.e.u.proyecto.test.UsuarioTest          : Started UsuarioTest in 4.481 seconds (process running for 5.571)
+2023-04-21T23:04:43.211-05:00  INFO 4132 --- [    Test worker] c.e.u.proyecto.test.UsuarioTest          : Starting UsuarioTest using Java 17.0.6 with PID 4132 (started by juand in C:\Users\juand\IdeaProjects\Market-main)
+2023-04-21T23:04:43.213-05:00  INFO 4132 --- [    Test worker] c.e.u.proyecto.test.UsuarioTest          : No active profile set, falling back to 1 default profile: "default"
+2023-04-21T23:04:44.682-05:00  INFO 4132 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-21T23:04:44.835-05:00  INFO 4132 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 132 ms. Found 8 JPA repository interfaces.
+2023-04-21T23:04:45.588-05:00  INFO 4132 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-21T23:04:45.690-05:00  INFO 4132 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.6.Final
+2023-04-21T23:04:46.005-05:00  WARN 4132 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2023-04-21T23:04:46.226-05:00  INFO 4132 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-21T23:04:46.804-05:00  INFO 4132 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@156cfa20
+2023-04-21T23:04:46.807-05:00  INFO 4132 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-21T23:04:46.904-05:00  INFO 4132 --- [    Test worker] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2023-04-21T23:04:47.034-05:00  WARN 4132 --- [    Test worker] org.hibernate.cfg.AnnotationBinder       : HHH000503: A class should not be annotated with both @Inheritance and @MappedSuperclass. @Inheritance will be ignored for: co.edu.uniquindio.proyecto.Modelo.Persona.
+2023-04-21T23:04:48.744-05:00  INFO 4132 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-21T23:04:48.767-05:00  INFO 4132 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-21T23:04:50.019-05:00  WARN 4132 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-21T23:04:50.626-05:00  INFO 4132 --- [    Test worker] c.e.u.proyecto.test.UsuarioTest          : Started UsuarioTest in 7.814 seconds (process running for 10.131)
 Hibernate: select u1_0.codigo,u1_0.ciudad,u1_0.correo,u1_0.direccion,u1_0.nombre,u1_0.password,u1_0.telefono from usuario u1_0 where u1_0.correo=?
 Hibernate: insert into usuario (ciudad, correo, direccion, nombre, password, telefono) values (?, ?, ?, ?, ?, ?)
-Hibernate: select u1_0.codigo,u1_0.ciudad,u1_0.correo,u1_0.direccion,u1_0.nombre,u1_0.password,u1_0.telefono from usuario u1_0 where u1_0.correo=?
-Hibernate: insert into usuario (ciudad, correo, direccion, nombre, password, telefono) values (?, ?, ?, ?, ?, ?)
-Hibernate: select u1_0.codigo,u1_0.ciudad,u1_0.correo,u1_0.direccion,u1_0.nombre,u1_0.password,u1_0.telefono from usuario u1_0 where u1_0.correo=?
-Hibernate: insert into usuario (ciudad, correo, direccion, nombre, password, telefono) values (?, ?, ?, ?, ?, ?)
-Hibernate: select count(*) from usuario u1_0 where u1_0.codigo=?
+Hibernate: select u1_0.codigo,u1_0.ciudad,u1_0.correo,u1_0.direccion,u1_0.nombre,u1_0.password,u1_0.telefono from usuario u1_0 where u1_0.codigo=?
 Hibernate: select u1_0.codigo,u1_0.ciudad,u1_0.correo,u1_0.direccion,u1_0.nombre,u1_0.password,u1_0.telefono from usuario u1_0 where u1_0.correo=?
 Hibernate: insert into usuario (ciudad, correo, direccion, nombre, password, telefono) values (?, ?, ?, ?, ?, ?)
 Hibernate: select count(*) from usuario u1_0 where u1_0.codigo=?
