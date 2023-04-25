@@ -24,7 +24,7 @@ public class Carrito implements Serializable {
     private int unidades;
 
     @Column(nullable = false)
-    private Double precioUnitario;
+    private double precioUnitario;
 
     @ManyToOne
     private Producto producto;

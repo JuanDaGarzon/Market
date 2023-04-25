@@ -29,6 +29,8 @@ public class UsuarioGetDTO {
 
     private String telefono;
 
-    private List<Ciudad> ciudad;
+    private Ciudad ciudad;
+
+    private String password;
 
 }

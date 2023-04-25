@@ -1,6 +1,8 @@
 package co.edu.uniquindio.proyecto.DTO;
 
 import co.edu.uniquindio.proyecto.Modelo.MetodoPago;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
@@ -16,8 +18,10 @@ import java.util.List;
 @ToString
 public class CompraDTO {
 
-    private List<MetodoPago> metodoPago;
+    @NotNull
+    private MetodoPago metodoPago;
 
+    @NotNull
     private List<CarritoDTO>carritoDTO;
 
     @Positive

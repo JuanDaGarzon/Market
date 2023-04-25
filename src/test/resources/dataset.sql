@@ -33,18 +33,17 @@ insert into comentario values (3, '2022-02-20 8:30:00', "Gran producto", 3, 3);
 insert into comentario values (4, '2022-01-20 6:30:00', "Es de mucha utilidad", 4, 4);
 insert into comentario values (5, '2022-12-18 7:30:00', "Buen servicio", 5, 5);
 
-insert into compra values (1, '2022-01-18 7:30:00', "EFECTIVO", 20000000.00, 1);
-insert into compra values (2, '2022-03-18 8:30:00', "TARJETA_DEBITO", 4800000.00, 2);
-insert into compra values (3, '2022-02-18 9:30:00', "EFECTIVO", 705253.00, 3);
-insert into compra values (4, '2022-03-18 10:30:00', "TARJETA_CREDITO", 98524.00, 4);
-insert into compra values (5, '2022-08-18 12:30:00', "EFECTIVO", 852000.00, 5);
-
 insert into carrito values (1, 20000000.00, 20, 1, 1);
 insert into carrito values (2, 4800000.00,25, 2, 2);
 insert into carrito values (3, 705253.00, 56, 3, 3);
 insert into carrito values (4, 98524.00, 78, 4, 4);
 insert into carrito values (5, 852000.00, 32, 5, 5);
 
+insert into compra values (1, '2022-01-18 7:30:00', "EFECTIVO", 20000000.00, 1);
+insert into compra values (2, '2022-03-18 8:30:00', "TARJETA_DEBITO", 4800000.00, 2);
+insert into compra values (3, '2022-02-18 9:30:00', "EFECTIVO", 705253.00, 3);
+insert into compra values (4, '2022-03-18 10:30:00', "TARJETA_CREDITO", 98524.00, 4);
+insert into compra values (5, '2022-08-18 12:30:00', "EFECTIVO", 852000.00, 5);
 
 insert into favorito values (1,1);
 insert into favorito values (2,2);
@@ -52,7 +51,6 @@ insert into favorito values (3,3);
 insert into favorito values (4,4);
 insert into favorito values (5,5);
 
-/**
 insert into productoAdministrador values (1,"DENEGADO",'2023-11-18 7:30:00',"Producto Denegado","No cumple con los
                                             requisitos",1,1);
 insert into productoAdministrador values (2,"SIN_REVISAR",'2023-12-18 7:30:00',"El producto fue denegado porque no cumple con
@@ -68,5 +66,4 @@ insert into productoAdministrador values (5,"ACEPTADO",'2023-12-18 7:30:00',"El 
                                             los estandares de calidad", "El producto necesita implementar mas
                                             caracteristicas, con el fin de que los clientes tengan mayor conocimiento
                                             de lo que compraran",5,5);
-*/
 

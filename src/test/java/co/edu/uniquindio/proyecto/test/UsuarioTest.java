@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
@@ -30,49 +31,16 @@ public class UsuarioTest {
         @Autowired
         private  UsuarioRepo usuarioRepo;
 
-
         @Test
-        public void crearUsuarioTest() throws Exception{
-
-            //Se crea el usuario con el servicio de crearUsuario
-            UsuarioDTO usuarioDTO = new UsuarioDTO(
-
-                    "Pepito 1",
-                    "pepe1@email.com",
-                    "1234",
-                    "Calle 123",
-                    "343",
-                    Ciudad.BOGOTA);
-
-            int codigo = usuarioServicio.crearUsuario(usuarioDTO);
-
-            //Se espera que si se registra correctamente entonces el servicio no debe retornar 0
-            Assertions.assertNotEquals(0, codigo);
-
-        }
-
-        @Test
+        @Sql("classpath:dataset.sql")
         public void eliminarUsuarioTest() throws Exception{
-
-            //Para eliminar el usuario primero se debe crear
-            UsuarioDTO usuarioDTO = new UsuarioDTO(
-                    "Pepito 1",
-                    "pepe1@email.com",
-                    "1234",
-                    "Calle 123",
-                    "343",
-                    Ciudad.BOGOTA);
-
-            int codigo = usuarioServicio.crearUsuario(usuarioDTO);
-
-            //Una vez creado, lo borramos
-            int codigoBorrado = usuarioServicio.eliminiarUsuario(codigo);
-
-            //Si intentamos buscar un usuario con el codigo del usuario borrado debemos obtener una excepción indicando que ya no existe
-            Assertions.assertThrows(Exception.class, () -> usuarioServicio.obtenerUsuario(codigoBorrado));
+            Usuario buscado=usuarioRepo.findById(1).orElse(null);
+            usuarioRepo.delete(buscado);
+            Assertions.assertNull(usuarioRepo.findById(1).orElse(null));
+            Assertions.assertThrows(Exception.class, () -> usuarioServicio.obtenerUsuario(1));
 
         }
-        /**
+
         @Test
         @Sql("classpath:dataset.sql")
         public void obtenerUsuarioTest()throws Exception{
@@ -81,7 +49,7 @@ public class UsuarioTest {
             System.out.println(buscado.orElse(null));
 
         }
-        */
+
         @Test
         @Sql("classpath:dataset.sql")
         public void actualizar() throws Exception {
@@ -94,15 +62,39 @@ public class UsuarioTest {
             Assertions.assertEquals("Ssandro@gmail.com",guardado.getCorreo());
         }
 
-        /**
         @Test
         @Sql("classpath:dataset.sql")
-        public void listar(){
-            List<UsuarioGetDTO> lista =usuarioRepo.findAll();
-            System.out.println(lista);
+        public void listarUsuarios(){
+            List<Usuario> listaUsuarios =usuarioRepo.findAll(PageRequest.of(0,5)).toList();
+            listaUsuarios.forEach(System.out::println);
         }
-        */
 
+        @Test
+        @Sql("classpath:dataset.sql")
+        public void comprobarAutentificacion(){
+
+            Usuario usuario = usuarioRepo.comprobarAutenticacion("sandro@gmail.com","1234" );
+            Assertions.assertNotNull(usuario);
+
+        }
+
+        @Test
+        public void crearUsuarioTest() throws Exception{
+            //Se crea el usuario con el servicio de crearUsuario
+         UsuarioDTO usuarioDTO = new UsuarioDTO(
+
+                "Pepito",
+                "pepe@email.com",
+                "1234",
+                "Calle 123",
+                "3432521026",
+                Ciudad.BOGOTA);
+
+        int codigo = usuarioServicio.crearUsuario(usuarioDTO);
+
+        Assertions.assertNotEquals(0, codigo);
+
+    }
 
 
 }

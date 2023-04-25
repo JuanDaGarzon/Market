@@ -9,6 +9,11 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 public class SesionGetDTO {
+
     private String nombre;
+
     private String password;
+
+    private int tipo;
+
 }

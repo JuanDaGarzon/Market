@@ -18,6 +18,6 @@ public interface UsuarioServicio {
 
         Usuario obtener(int codigoUsuario) throws Exception;
 
-        List<Usuario> listarUsuarios();
+        List<UsuarioGetDTO> listarUsuarios();
 
 }

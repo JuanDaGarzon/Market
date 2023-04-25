@@ -15,4 +15,7 @@ public interface UsuarioRepo extends JpaRepository<Usuario,Integer> {
     @Query("select u from Usuario u where u.correo = :correo")
     Usuario buscarUsuario(String correo);
 
+    @Query("select u from Usuario u where u.correo = :correo and u.password = :password")
+    Usuario comprobarAutenticacion(String correo, String password);
+
 }

@@ -4,6 +4,6 @@ import co.edu.uniquindio.proyecto.DTO.CorreoDTO;
 
 public interface CorreoServicio {
 
-    String enviarCorreo(CorreoDTO correoDTO);
+    void enviarCorreo(CorreoDTO correoDTO)throws Exception;
 
 }

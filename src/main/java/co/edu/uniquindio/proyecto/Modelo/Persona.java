@@ -30,6 +30,7 @@ public class Persona implements Serializable {
     private String correo;
 
     @Column(unique = true,nullable = false)
+    @ToString.Exclude
     private String password;
 
 

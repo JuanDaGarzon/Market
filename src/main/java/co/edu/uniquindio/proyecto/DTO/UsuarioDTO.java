@@ -45,5 +45,5 @@ public class UsuarioDTO {
     private String telefono;
 
     @NotNull
-    private List<Ciudad> ciudad;
+    private Ciudad ciudad;
 }

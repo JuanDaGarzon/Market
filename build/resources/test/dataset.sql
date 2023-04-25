@@ -44,15 +44,14 @@ insert into carrito values (2, 4800000.00,25, 2, 2);
 insert into carrito values (3, 705253.00, 56, 3, 3);
 insert into carrito values (4, 98524.00, 78, 4, 4);
 insert into carrito values (5, 852000.00, 32, 5, 5);
-
-
+/**
 insert into favorito values (1,1);
 insert into favorito values (2,2);
 insert into favorito values (3,3);
 insert into favorito values (4,4);
 insert into favorito values (5,5);
 
-/**
+/*
 insert into productoAdministrador values (1,"DENEGADO",'2023-11-18 7:30:00',"Producto Denegado","No cumple con los
                                             requisitos",1,1);
 insert into productoAdministrador values (2,"SIN_REVISAR",'2023-12-18 7:30:00',"El producto fue denegado porque no cumple con
@@ -69,4 +68,3 @@ insert into productoAdministrador values (5,"ACEPTADO",'2023-12-18 7:30:00',"El 
                                             caracteristicas, con el fin de que los clientes tengan mayor conocimiento
                                             de lo que compraran",5,5);
 */
-

@@ -10,6 +10,7 @@ import co.edu.uniquindio.proyecto.Servicios.Interfaces.UsuarioServicio;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -113,16 +114,22 @@ public class UsuarioServicioImpl implements UsuarioServicio {
                 usuario.getCorreo(),
                 usuario.getDireccion(),
                 usuario.getTelefono(),
-                usuario.getCiudad());
+                usuario.getCiudad(),
+                usuario.getPassword());
 
         return usuarioDTO;
 
     }
 
     @Override
-    public List<Usuario> listarUsuarios() {
+    public List<UsuarioGetDTO> listarUsuarios() {
 
-        return usuarioRepo.findAll();
+        List<Usuario>listaUsuarios = usuarioRepo.findAll();
+        List<UsuarioGetDTO> lista = new ArrayList<>();
+        for (Usuario u: listaUsuarios ){
+            lista.add(convertir(u));
+        }
+        return lista;
 
     }
 
