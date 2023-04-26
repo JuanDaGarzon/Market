@@ -5,6 +5,7 @@ import co.edu.uniquindio.proyecto.DTO.UsuarioGetDTO;
 import co.edu.uniquindio.proyecto.Modelo.Usuario;
 import co.edu.uniquindio.proyecto.Repositorios.UsuarioRepo;
 import co.edu.uniquindio.proyecto.Servicios.Excepciones.AtributoException;
+import co.edu.uniquindio.proyecto.Servicios.Excepciones.AutentificacionException;
 import co.edu.uniquindio.proyecto.Servicios.Excepciones.UsuarioNoEncontradoException;
 import co.edu.uniquindio.proyecto.Servicios.Interfaces.UsuarioServicio;
 import lombok.AllArgsConstructor;
@@ -28,7 +29,6 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
         Usuario buscado = usuarioRepo.buscarUsuario(usuarioDTO.getCorreo());
 
-
         if (buscado!=null){
             throw new AtributoException("El correo"+usuarioDTO.getCorreo()+"ya esta en uso");
         }
@@ -42,7 +42,6 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     @Override
     public UsuarioGetDTO actualizarUsuario(int codigoUsuario, UsuarioDTO usuarioDTO) throws Exception {
 
-        //validar que el correo no se repita
         validarExiste(codigoUsuario);
 
         Usuario usuario = convertir(usuarioDTO);
@@ -57,6 +56,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
         //Validar que exista el usuario
         validarExiste(codigoUsuario);
+
         usuarioRepo.deleteById(codigoUsuario);
         return codigoUsuario;
 
@@ -107,7 +107,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
     private UsuarioGetDTO convertir(Usuario usuario){
 
-        UsuarioGetDTO usuarioDTO = new UsuarioGetDTO(
+        UsuarioGetDTO usuarioGetDTO = new UsuarioGetDTO(
 
                 usuario.getCodigo(),
                 usuario.getNombre(),
@@ -117,12 +117,12 @@ public class UsuarioServicioImpl implements UsuarioServicio {
                 usuario.getCiudad(),
                 usuario.getPassword());
 
-        return usuarioDTO;
+        return usuarioGetDTO;
 
     }
 
     @Override
-    public List<UsuarioGetDTO> listarUsuarios() {
+    public List<UsuarioGetDTO> listarUsuariosDTO() {
 
         List<Usuario>listaUsuarios = usuarioRepo.findAll();
         List<UsuarioGetDTO> lista = new ArrayList<>();
@@ -130,6 +130,19 @@ public class UsuarioServicioImpl implements UsuarioServicio {
             lista.add(convertir(u));
         }
         return lista;
+
+    }
+
+    @Override
+    public Usuario login(String correo, String password) throws Exception {
+
+        Usuario usuario = usuarioRepo.comprobarAutenticacion(correo,password);
+
+        if (usuario == null){
+            throw new AutentificacionException("Los datos de autentificacion son incorrectos");
+        }
+
+        return usuario;
 
     }
 

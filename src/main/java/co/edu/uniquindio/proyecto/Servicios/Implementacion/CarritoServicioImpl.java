@@ -117,13 +117,11 @@ public class CarritoServicioImpl implements CarritoServicio {
     }
 
     @Override
-    public CarritoGetDTO añadirProducto(int codigoProducto, int codigoCarrito) throws Exception {
+    public CarritoGetDTO añadirProductos(List<Producto>listaProductos, int codigoCarrito) throws Exception {
+
         validarExiste(codigoCarrito);
-        productoServicio.obtenerProducto(codigoProducto);
         CarritoGetDTO carritoGetDTO = convertir(obtener(codigoCarrito));
-        carritoGetDTO.setCodigoProducto(codigoProducto);
-
-
+        
         return carritoGetDTO;
     }
 }

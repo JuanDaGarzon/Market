@@ -29,35 +29,40 @@ public class CompraServicioImpl implements CompraServicio {
     private final ProductoServicio productoServicio;
     private final CompraRepo compraRepo;
 
+
     @Override
     public int crearCompra(CompraDTO compraDTO) {
-
-        validarCompra(compraDTO);
-        List<Carrito>listaCarritos= new ArrayList<>();
-
-        Compra compra = new Compra();
-        compra.setCarritos();
-        compra.setUsuario();
-        compra.setFechaCeacion();
-        compra.setMetodoPago();
-        compra.setValorTotal();
-
         return 0;
     }
 
     @Override
-    public List<CompraGetDTO> listarCompras(int codigoUsuario) {
+    public int eliminarCompra(int codigoCompra) {
+        return 0;
+    }
+
+    @Override
+    public Compra obtenerCompra(int codigoCompra) {
         return null;
     }
 
     @Override
-    public Compra obtenerCompra(int codigoCompra) throws NoSeHaEncontradoCompraException {
-        Optional<Compra> compra = compraRepo.findById(codigoCompra);
-        if (compra.isEmpty())
-            throw new NoSeHaEncontradoCompraException("El codigo "+codigoCompra+" no esta asociado a ninguna compra");
-        return compra.get();
+    public List<CompraGetDTO> listarComprasGetDTO() {
+        return null;
     }
 
-
+    @Override
+    public List<CompraGetDTO> listarCompraPorMetodoPagoTajetaCredito(MetodoPago metodoPago) {
+        return null;
     }
+
+    @Override
+    public List<CompraGetDTO> listarCompraPorMetodoPagoTajetaDebito(MetodoPago metodoPago) {
+        return null;
+    }
+
+    @Override
+    public List<CompraGetDTO> listarCompraPorMetodoPagoEfectivo(MetodoPago metodoPago) {
+        return null;
+    }
+}
 

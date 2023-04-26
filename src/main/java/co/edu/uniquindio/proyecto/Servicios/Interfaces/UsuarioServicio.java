@@ -18,6 +18,8 @@ public interface UsuarioServicio {
 
         Usuario obtener(int codigoUsuario) throws Exception;
 
-        List<UsuarioGetDTO> listarUsuarios();
+        List<UsuarioGetDTO> listarUsuariosDTO();
+
+        Usuario login (String correo, String password) throws Exception;
 
 }

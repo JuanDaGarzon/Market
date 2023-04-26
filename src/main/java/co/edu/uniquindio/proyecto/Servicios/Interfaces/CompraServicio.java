@@ -12,10 +12,11 @@ import java.util.List;
 public interface CompraServicio {
 
     int crearCompra(CompraDTO compraDTO);
-    CompraGetDTO listarCompras(int codigoUsuario);
-    Compra obtenerCompra(int codigoCompra) throws NoSeHaEncontradoCompraException;
-    List<CompraGetDTO>lisatrCompra();
-    List<CompraGetDTO> listarCarritoMetodoPagoTajetaCredito(MetodoPago metodoPago);
-    List<CompraGetDTO> listarCarritoMetodoPagoTajetaDebito(MetodoPago metodoPago);
-    List<CompraGetDTO> listarCarritoMetodoPagoEfectivo(MetodoPago metodoPago);
+    int eliminarCompra(int codigoCompra);
+    Compra obtenerCompra(int codigoCompra) ;
+    List<CompraGetDTO>listarComprasGetDTO();
+    List<CompraGetDTO> listarCompraPorMetodoPagoTajetaCredito(MetodoPago metodoPago);
+    List<CompraGetDTO> listarCompraPorMetodoPagoTajetaDebito(MetodoPago metodoPago);
+    List<CompraGetDTO> listarCompraPorMetodoPagoEfectivo(MetodoPago metodoPago);
+
 }

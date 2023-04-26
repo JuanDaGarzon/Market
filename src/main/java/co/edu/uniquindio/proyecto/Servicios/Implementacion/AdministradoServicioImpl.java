@@ -1,13 +1,10 @@
 package co.edu.uniquindio.proyecto.Servicios.Implementacion;
 
-import co.edu.uniquindio.proyecto.DTO.AdministradorDTO;
-import co.edu.uniquindio.proyecto.DTO.TokenDTO;
-import co.edu.uniquindio.proyecto.Modelo.Estado;
-import co.edu.uniquindio.proyecto.Modelo.Producto;
+import co.edu.uniquindio.proyecto.Modelo.Administrador;
 import co.edu.uniquindio.proyecto.Repositorios.AdministradorRepo;
-import co.edu.uniquindio.proyecto.Repositorios.ProductoRepo;
+import co.edu.uniquindio.proyecto.Servicios.Excepciones.AutentificacionException;
+import co.edu.uniquindio.proyecto.Servicios.Excepciones.NoSeHaEncontradoAdministradorException;
 import co.edu.uniquindio.proyecto.Servicios.Interfaces.AdministradorServicio;
-import co.edu.uniquindio.proyecto.Servicios.Interfaces.ProductoServicio;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,24 +12,32 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class AdministradoServicioImpl implements AdministradorServicio {
 
-    private final ProductoRepo productoRepo;
+
     private final AdministradorRepo administradorRepo;
-    private final ProductoServicio productoServicio;
 
     @Override
-    public TokenDTO iniciarSesion(AdministradorDTO administradorDTO) {
+    public Administrador login(String correo, String password) throws AutentificacionException {
 
-        return null;
+        Administrador admin = administradorRepo.comprobarAutenticacionAdmin(correo,password);
+        if (admin == null){
+            throw new AutentificacionException("Los datos de autentificacion son incorrectos");
+        }
+        return admin;
+
     }
 
     @Override
-    public Producto autorizarProducto(Producto producto, Estado estado) {
-        return null;
+    public Administrador obtenerAdministrador(int codigo) throws NoSeHaEncontradoAdministradorException {
+        Administrador administrador = validarAdministrador(codigo);
+        return administrador;
     }
 
-    @Override
-    public Producto rechazarProducto(Producto producto, Estado estado) {
-
-        return null;
+    private Administrador validarAdministrador(int codigo) throws NoSeHaEncontradoAdministradorException {
+        Administrador administrador = administradorRepo.findById(codigo).orElse(null);
+        if (administrador==null){
+            throw new NoSeHaEncontradoAdministradorException("No se ha encontrado administrador con el codigo: "+codigo);
+        }
+        return administrador;
     }
+
 }

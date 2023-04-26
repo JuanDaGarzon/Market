@@ -32,6 +32,24 @@ public class UsuarioTest {
         private  UsuarioRepo usuarioRepo;
 
         @Test
+        public void crearUsuarioTest() throws Exception{
+            //Se intancia un DTO,
+            UsuarioDTO usuarioDTO = new UsuarioDTO(
+
+                    "Pepito",
+                    "pepe@email.com",
+                    "1234",
+                    "Calle 123",
+                    "3432521026",
+                    Ciudad.BOGOTA);
+
+            int codigo = usuarioServicio.crearUsuario(usuarioDTO);
+
+            Assertions.assertNotEquals(0, codigo);
+
+        }
+
+        @Test
         @Sql("classpath:dataset.sql")
         public void eliminarUsuarioTest() throws Exception{
             Usuario buscado=usuarioRepo.findById(1).orElse(null);
@@ -78,23 +96,6 @@ public class UsuarioTest {
 
         }
 
-        @Test
-        public void crearUsuarioTest() throws Exception{
-            //Se crea el usuario con el servicio de crearUsuario
-         UsuarioDTO usuarioDTO = new UsuarioDTO(
-
-                "Pepito",
-                "pepe@email.com",
-                "1234",
-                "Calle 123",
-                "3432521026",
-                Ciudad.BOGOTA);
-
-        int codigo = usuarioServicio.crearUsuario(usuarioDTO);
-
-        Assertions.assertNotEquals(0, codigo);
-
-    }
 
 
 }

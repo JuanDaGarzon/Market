@@ -17,8 +17,7 @@ public interface CarritoServicio {
     int eliminarCarrito(int codigoCarrito) throws NoSeHaEncontradoCarritoException;
     CarritoGetDTO actualizarCarrito(int codigoCarrito, CarritoDTO carritoDTO) throws AtributoException, NoSeHaEncontradoCarritoException;
     CarritoGetDTO obetenerCarrito(int codigoCarrito) throws NoSeHaEncontradoCompraException;
-
     List<CarritoGetDTO> listarCarrtito();
-    CarritoGetDTO añadirProducto(int codigoProducto,int codigoCarrito) throws Exception;
+    CarritoGetDTO añadirProductos(List<Producto> listaProducto, int codigoCarrito) throws Exception;
 
 }

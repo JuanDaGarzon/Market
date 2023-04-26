@@ -16,6 +16,6 @@ public class Administrador extends Persona implements Serializable {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "administrador")
-    private List<ProductoAdministrador>listaProductos;
+    private List<ProductoAdmin>listaProductos;
 
 }

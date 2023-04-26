@@ -223,6 +223,7 @@ public class ProductoServicioImpl implements ProductoServicio {
 
     @Override
     public List<ProductoGetDTO> listarProductosNombre(String nombreProucto) {
+
         List<Producto> lista =productoRepo.findAllByNombre(nombreProucto);
         List<ProductoGetDTO> respuesta = new ArrayList<>();
 

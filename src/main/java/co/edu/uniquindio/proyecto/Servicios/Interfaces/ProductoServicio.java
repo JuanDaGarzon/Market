@@ -13,7 +13,6 @@ import java.util.List;
 public interface ProductoServicio {
 
     int crearProducto(ProductoDTO productoDTO) throws Exception;
-
     ProductoGetDTO actualizarProducto(int codigoProducto, ProductoDTO productoDTO) throws Exception;
     ProductoGetDTO obtenerProducto(int codigoProducto) throws Exception;
     Producto obtener(int codigoProducto) throws AtributoException;

@@ -5,5 +5,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @Transactional
-public class AdministradorTest {
+public class CarritoTest {
+
 }

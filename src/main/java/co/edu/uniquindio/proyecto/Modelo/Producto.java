@@ -2,17 +2,12 @@ package co.edu.uniquindio.proyecto.Modelo;
 
 
 
-import com.fasterxml.jackson.databind.ser.std.UUIDSerializer;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 
-import java.awt.*;
 import java.io.Serializable;
-import java.nio.MappedByteBuffer;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -65,7 +60,7 @@ public class Producto implements Serializable {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "producto")
-    private List<ProductoAdministrador>listaAdministradores;
+    private List<ProductoAdmin>listaAdministradores;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "producto")
