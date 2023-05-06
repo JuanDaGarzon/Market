@@ -2,15 +2,14 @@ package co.edu.uniquindio.proyecto.Servicios.Implementacion;
 
 import co.edu.uniquindio.proyecto.DTO.ComentarioDTO;
 import co.edu.uniquindio.proyecto.DTO.ComentarioGetDTO;
+import co.edu.uniquindio.proyecto.DTO.CorreoDTO;
 import co.edu.uniquindio.proyecto.DTO.UsuarioGetDTO;
 import co.edu.uniquindio.proyecto.Modelo.Comentario;
+import co.edu.uniquindio.proyecto.Modelo.Producto;
 import co.edu.uniquindio.proyecto.Modelo.Usuario;
 import co.edu.uniquindio.proyecto.Repositorios.ComentarioRepo;
 import co.edu.uniquindio.proyecto.Servicios.Excepciones.NoSeHaEncontradoComentarioException;
-import co.edu.uniquindio.proyecto.Servicios.Interfaces.ComentarioServicio;
-import co.edu.uniquindio.proyecto.Servicios.Interfaces.CompraServicio;
-import co.edu.uniquindio.proyecto.Servicios.Interfaces.ProductoServicio;
-import co.edu.uniquindio.proyecto.Servicios.Interfaces.UsuarioServicio;
+import co.edu.uniquindio.proyecto.Servicios.Interfaces.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,18 +23,28 @@ public class ComentarioServicioImpl implements ComentarioServicio {
     private final ComentarioRepo comentarioRepo;
     private final UsuarioServicio usuarioServicio;
     private final ProductoServicio productoServicio;
+    private final CorreoServicio correoServicio;
 
     @Override
     public int crearComentario(ComentarioDTO comentarioDTO) throws Exception {
 
         Comentario comentario = new Comentario();
+        Producto producto = productoServicio.obtener(comentarioDTO.getCodigoProducto());
 
         comentario.setMensaje(comentarioDTO.getMensaje());
         comentario.setUsuario(usuarioServicio.obtener(comentarioDTO.getCodigoUsuario()));
-        comentario.setProducto(productoServicio.obtener(comentarioDTO.getCodigoProducto()));
+        comentario.setProducto(producto);
         comentario.setFechaCreacion(LocalDateTime.now());
 
-        return comentario.getCodigo();
+        int codigo = comentarioRepo.save(comentario).getCodigo();
+
+        correoServicio.enviarCorreo( new CorreoDTO(
+                "Nuevo comentario",
+                "El comentario del usuario es: "+comentarioDTO.getMensaje(),
+                producto.getUsuario().getCorreo()
+        ));
+
+        return codigo;
 
     }
 
@@ -64,11 +73,14 @@ public class ComentarioServicioImpl implements ComentarioServicio {
 
     @Override
     public List<ComentarioGetDTO> listarComentario() {
+
         List<Comentario>listaUsuarios = comentarioRepo.findAll();
         List<ComentarioGetDTO> lista = new ArrayList<>();
+
         for (Comentario c: listaUsuarios ){
             lista.add(convertir(c));
         }
+
         return lista;
     }
 

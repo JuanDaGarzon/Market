@@ -5,6 +5,7 @@ import co.edu.uniquindio.proyecto.DTO.ProductoGetDTO;
 import co.edu.uniquindio.proyecto.Modelo.Categoria;
 import co.edu.uniquindio.proyecto.Modelo.Estado;
 import co.edu.uniquindio.proyecto.Modelo.Producto;
+import co.edu.uniquindio.proyecto.Modelo.Usuario;
 import co.edu.uniquindio.proyecto.Repositorios.ProductoRepo;
 import co.edu.uniquindio.proyecto.Servicios.Excepciones.AtributoException;
 import co.edu.uniquindio.proyecto.Servicios.Excepciones.ProductoNoEncontradoException;
@@ -250,6 +251,25 @@ public class ProductoServicioImpl implements ProductoServicio {
     @Override
     public List<ProductoGetDTO> listarProductosFavoritos(int codigoUsuario) {
         return null;
+    }
+
+    @Override
+    public void agregarFavorito(int codigoProducto, int codigoUsuario) throws Exception {
+
+        Usuario usuario = usuarioServicio.obtener(codigoUsuario);
+        Producto producto = obtener(codigoProducto);
+
+        usuario.getProductosFavoritos().add(producto);
+
+    }
+
+    @Override
+    public void eliminarFavorito(int codigoProducto, int codigoUsuario) throws Exception{
+
+        Usuario usuario = usuarioServicio.obtener(codigoUsuario);
+        Producto producto = obtener(codigoProducto);
+
+        usuario.getProductosFavoritos().remove(producto);
     }
 
     private ProductoGetDTO convertir(Producto producto){

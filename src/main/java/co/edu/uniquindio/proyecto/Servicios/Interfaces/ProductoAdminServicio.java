@@ -14,5 +14,6 @@ public interface ProductoAdminServicio {
     ProductoAdminGetDTO autorizarProducto(ProductoAdminDTO productoAdminDTO) throws Exception;
     ProductoAdminGetDTO rechazarProducto(ProductoAdminDTO productoAdminDTO) throws Exception;
     List<ProductoGetDTO> listarProductosSinRevisar(Estado estado) throws Exception;
+    List<ProductoGetDTO>listarProductosEstado(Estado estado) throws Exception;
 
 }

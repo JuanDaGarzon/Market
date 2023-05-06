@@ -3,15 +3,12 @@ package co.edu.uniquindio.proyecto.DTO;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@ToString
+@NoArgsConstructor
 public class SesionDTO {
 
     @NotBlank
@@ -22,9 +19,5 @@ public class SesionDTO {
     @NotBlank
     @NotNull
     private String password;
-
-    @NotNull
-    @NotBlank
-    private int tipo;
 
 }

@@ -30,7 +30,6 @@ public class Producto implements Serializable {
     private String nombre;
 
     @Column(nullable = false)
-    @EqualsAndHashCode.Include
     private Double precio;
 
     @Column(nullable = false)
@@ -66,11 +65,8 @@ public class Producto implements Serializable {
     @OneToMany(mappedBy = "producto")
     private List<Comentario>comentarios;
 
-    @ManyToMany
-    @JoinTable(name = "favorito",
-            joinColumns = @JoinColumn(name = "producto"),
-            inverseJoinColumns = @JoinColumn(name = "usuario"))
-    private List<Usuario>usuariosFavoritos;
+    @ManyToMany(mappedBy = "productosFavoritos")
+    private List<Usuario> usuariosFavoritos;
 
     @ManyToOne
     private Usuario usuario;

@@ -87,7 +87,21 @@ public class ProductoAdminServicioImpl implements ProductoAdminServicio {
         return listaProductos;
 
     }
+    @Override
+    public List<ProductoGetDTO> listarProductosEstado(Estado estado) throws Exception {
 
+        List<ProductoAdminGetDTO> lista = productoAdminRepo.listarProductosEstado(estado,
+                PageRequest.of(0,3));
+
+        List<ProductoGetDTO> listaProductos = new ArrayList<>();
+
+        for (ProductoAdminGetDTO p :lista) {
+            listaProductos.add(encontrarProducto(p));
+        }
+
+        return listaProductos;
+
+    }
     private ProductoGetDTO encontrarProducto(ProductoAdminGetDTO productoAdminGetDTO) throws Exception {
 
         ProductoGetDTO productoGetDTO = productoServicio.obtenerProducto(productoAdminGetDTO.getCodigoProducto());

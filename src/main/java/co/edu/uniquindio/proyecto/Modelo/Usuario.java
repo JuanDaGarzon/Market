@@ -27,7 +27,10 @@ public class Usuario extends Persona implements Serializable {
     @OneToMany(mappedBy = "usuario")
     private List<Comentario>listaComentarios;
 
-    @ManyToMany(mappedBy = "usuariosFavoritos")
+    @ManyToMany
+    @JoinTable(name = "favorito",
+            joinColumns = @JoinColumn(name = "producto"),
+            inverseJoinColumns = @JoinColumn(name = "usuario"))
     private List<Producto> productosFavoritos;
 
     @ToString.Exclude

@@ -32,4 +32,9 @@ public class Carrito implements Serializable {
     @ManyToOne
     private Compra compra;
 
+    public Carrito(int unidades, double precioUnitario, Producto producto) {
+        this.unidades = unidades;
+        this.precioUnitario = precioUnitario;
+        this.producto = producto;
+    }
 }
