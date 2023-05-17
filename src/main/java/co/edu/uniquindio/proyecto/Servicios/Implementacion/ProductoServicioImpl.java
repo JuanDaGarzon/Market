@@ -254,22 +254,26 @@ public class ProductoServicioImpl implements ProductoServicio {
     }
 
     @Override
-    public void agregarFavorito(int codigoProducto, int codigoUsuario) throws Exception {
+    public int agregarFavorito(int codigoProducto, int codigoUsuario) throws Exception {
 
         Usuario usuario = usuarioServicio.obtener(codigoUsuario);
         Producto producto = obtener(codigoProducto);
 
         usuario.getProductosFavoritos().add(producto);
 
+        return usuario.getCodigo();
     }
 
     @Override
-    public void eliminarFavorito(int codigoProducto, int codigoUsuario) throws Exception{
+    public int eliminarFavorito(int codigoProducto, int codigoUsuario) throws Exception{
 
         Usuario usuario = usuarioServicio.obtener(codigoUsuario);
         Producto producto = obtener(codigoProducto);
 
         usuario.getProductosFavoritos().remove(producto);
+
+        return usuario.getCodigo();
+
     }
 
     private ProductoGetDTO convertir(Producto producto){

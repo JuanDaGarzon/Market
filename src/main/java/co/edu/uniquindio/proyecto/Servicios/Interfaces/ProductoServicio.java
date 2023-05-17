@@ -31,7 +31,7 @@ public interface ProductoServicio {
     List<ProductoGetDTO>listarProductosPrecio(double precioProducto);
     List<ProductoGetDTO>listarProductosFavoritos(int codigoUsuario );
 
-    void agregarFavorito(int codigoProducto, int codigoUsuario) throws Exception;
-    void eliminarFavorito(int codigoProducto, int codigoUsuario) throws Exception;
+    int agregarFavorito(int codigoProducto, int codigoUsuario) throws Exception;
+    int eliminarFavorito(int codigoProducto, int codigoUsuario) throws Exception;
 
 }

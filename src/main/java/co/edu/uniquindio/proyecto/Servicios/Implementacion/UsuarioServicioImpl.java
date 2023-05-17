@@ -9,6 +9,8 @@ import co.edu.uniquindio.proyecto.Servicios.Excepciones.AutentificacionException
 import co.edu.uniquindio.proyecto.Servicios.Excepciones.UsuarioNoEncontradoException;
 import co.edu.uniquindio.proyecto.Servicios.Interfaces.UsuarioServicio;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,7 +24,10 @@ import java.util.Optional;
 public class UsuarioServicioImpl implements UsuarioServicio {
 
     //Instanciar Repositorio
+    @Autowired
     private final UsuarioRepo usuarioRepo;
+    @Autowired
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public int crearUsuario(UsuarioDTO usuarioDTO) throws Exception {
@@ -98,7 +103,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         usuario.setNombre(usuarioDTO.getNombre());
         usuario.setCiudad(usuarioDTO.getCiudad());
         usuario.setCorreo(usuarioDTO.getCorreo());
-        usuario.setPassword(usuarioDTO.getPassword());
+        usuario.setPassword(passwordEncoder.encode(usuarioDTO.getPassword()));
         usuario.setTelefono(usuarioDTO.getTelefono());
         usuario.setDireccion(usuarioDTO.getDireccion());
 

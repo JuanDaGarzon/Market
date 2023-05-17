@@ -7,6 +7,7 @@ import co.edu.uniquindio.proyecto.Modelo.Estado;
 import co.edu.uniquindio.proyecto.Modelo.Producto;
 import co.edu.uniquindio.proyecto.Modelo.ProductoAdmin;
 import co.edu.uniquindio.proyecto.Repositorios.ProductoAdminRepo;
+import co.edu.uniquindio.proyecto.Repositorios.ProductoRepo;
 import co.edu.uniquindio.proyecto.Servicios.Interfaces.AdministradorServicio;
 import co.edu.uniquindio.proyecto.Servicios.Interfaces.ProductoAdminServicio;
 import co.edu.uniquindio.proyecto.Servicios.Interfaces.ProductoServicio;
@@ -24,6 +25,7 @@ public class ProductoAdminServicioImpl implements ProductoAdminServicio {
     private final ProductoAdminRepo productoAdminRepo;
     private final ProductoServicio productoServicio;
     private final AdministradorServicio administradorServicio;
+    private final ProductoRepo productoRepo;
 
     @Override
     public ProductoAdminGetDTO autorizarProducto(ProductoAdminDTO productoAdminDTO) throws Exception {
@@ -35,6 +37,9 @@ public class ProductoAdminServicioImpl implements ProductoAdminServicio {
         productoAdmin.setEstado(Estado.ACEPTADO);
         productoAdmin.setAdministrador(administradorServicio.obtenerAdministrador(productoAdminDTO.getCodigoAdmin()));
         productoAdmin.setProducto(productoServicio.obtener(productoAdminDTO.getCodigoProducto()));
+
+        productoAdminRepo.save(productoAdmin);
+        productoServicio.actualizarEstado(productoAdminDTO.getCodigoProducto(), Estado.ACEPTADO);
 
         return convertir(productoAdmin);
 
@@ -50,6 +55,9 @@ public class ProductoAdminServicioImpl implements ProductoAdminServicio {
         productoAdmin.setEstado(Estado.DENEGADO);
         productoAdmin.setAdministrador(administradorServicio.obtenerAdministrador(productoAdminDTO.getCodigoAdmin()));
         productoAdmin.setProducto(productoServicio.obtener(productoAdminDTO.getCodigoProducto()));
+
+        productoAdminRepo.save(productoAdmin);
+        productoServicio.actualizarEstado(productoAdminDTO.getCodigoProducto(), Estado.DENEGADO);
 
         return convertir(productoAdmin);
 

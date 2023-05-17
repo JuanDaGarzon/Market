@@ -17,8 +17,4 @@ public class TokenDTO {
     @NotNull
     private String token;
 
-    @NotNull
-    @NotBlank
-    private String estado;
-
 }
